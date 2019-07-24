@@ -1,0 +1,5 @@
+base:
+  '*':
+    - qubes-server.dmz
+  dmz-ns:
+    - qubes-server.dmz-ns

@@ -1,0 +1,3 @@
+# Notset Qubes experimental/unstable repository
+deb [arch=amd64] https://mirror.notset.fr/qubes/repo/notset/deb/r4.0/vm buster-unstable main
+# deb-src https://deb.qubes-os.org/r4.0/vm buster-unstable main

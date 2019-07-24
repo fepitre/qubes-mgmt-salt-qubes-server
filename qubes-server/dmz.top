@@ -1,0 +1,9 @@
+base:
+    dom0:
+        - qubes-server.dmz
+    dmz-sys-net:
+        - qubes-server.dmz-sys-net
+    dmz-ns:
+        - bind.config
+    dmz-sys-firewall:
+        - qubes-server.dmz-sys-firewall

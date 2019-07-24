@@ -1,0 +1,5 @@
+base:
+    dom0:
+        - qubes-server.wan
+    wan-sys-net:
+        - qubes-server.wan-sys-net

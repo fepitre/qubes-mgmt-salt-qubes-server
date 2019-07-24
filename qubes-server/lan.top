@@ -1,0 +1,12 @@
+base:
+    dom0:
+        - qubes-server.lan
+    lan-sys-net:
+        - qubes-server.lan-sys-net
+        - qubes-server.lan-dhcp-relay
+    lan-ns:
+        - bind.config
+    lan-dhcp-server:
+        - dhcpd.config
+    lan-sys-firewall:
+        - qubes-server.lan-sys-firewall

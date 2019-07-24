@@ -1,0 +1,22 @@
+# vim: set syntax=yaml ts=2 sw=2 sts=2 et :
+
+package-name:   qubes-mgmt-salt-qubes-server
+saltenv:        base
+version:        1.0.0
+release:        1
+name:           qubes-server
+top_level_dir:  qubes-server
+formula-files:  qubes-server LICENSE README.md
+pillar-files:   pillar/qubes-server
+formula_dir:    $(MGMT_DEFAULT_FORMULA_DIR)/$(MGMT_SALTENV)/$(MGMT_NAME)
+pillar_dir:     $(MGMT_DEFAULT_PILLAR_DIR)/$(MGMT_SALTENV)/$(MGMT_TOP_LEVEL_DIR)
+os:             Qubes
+os_family:      RedHat
+summary:        Create Qubes OS Server
+description: |
+  Create Qubes OS Server
+
+pillar-tops:
+  base:
+    enable:
+      - qubes-server

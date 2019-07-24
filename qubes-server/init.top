@@ -1,0 +1,6 @@
+base:
+    dom0:
+        - qubes-server.init
+    debian-10-minimal:
+        - qubes-server.notset-repo
+        - qubes-server.template

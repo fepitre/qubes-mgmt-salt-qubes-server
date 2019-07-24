@@ -1,0 +1,12 @@
+base:
+    dom0:
+        - qubes-server.admin
+    admin-sys-net:
+        - qubes-server.admin-sys-net
+    admin-sys-firewall:
+        - qubes-server.admin-sys-firewall
+    admin-vpn:
+        - qubes-server.admin-vpn
+        - openvpn.config
+    admin-mgmt:
+        - qubes-server.admin-mgmt

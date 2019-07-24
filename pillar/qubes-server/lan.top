@@ -1,0 +1,7 @@
+base:
+  '*':
+    - qubes-server.lan
+  lan-ns:
+    - qubes-server.lan-ns
+  lan-dhcp-server:
+    - qubes-server.lan-dhcp-server

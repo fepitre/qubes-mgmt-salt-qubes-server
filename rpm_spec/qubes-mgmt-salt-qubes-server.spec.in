@@ -1,0 +1,52 @@
+Name:		qubes-mgmt-salt-qubes-server
+Version:	@VERSION@
+Release:	1%{?dist}
+Summary:	Create Qubes OS Server
+
+Group:		System administration tools
+License:	GPL 2.0
+BuildArch:  noarch
+URL:		https://www.qubes-os.org/
+Source:	%{name}-%{version}.tar.gz
+
+Requires:	qubes-mgmt-salt
+
+%description
+
+
+%prep
+%setup -q
+
+%build
+
+%install
+make install DESTDIR=%{buildroot} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{_sbindir} SYSCONFDIR=%{_sysconfdir}
+
+
+%files
+%defattr(-,root,root)
+%doc LICENSE README.md
+%attr(750, root, root) %dir /srv/formulas/base/qubes-server
+/srv/formulas/base/qubes-server/README.md
+/srv/formulas/base/qubes-server/LICENSE
+/srv/formulas/base/qubes-server/qubes-server
+
+%attr(750, root, root) %dir /srv/pillar/base/qubes-server
+%config(noreplace) /srv/pillar/base/qubes-server/init.sls
+%config(noreplace) /srv/pillar/base/qubes-server/init.top
+%config(noreplace) /srv/pillar/base/qubes-server/admin.top
+%config(noreplace) /srv/pillar/base/qubes-server/admin.sls
+%config(noreplace) /srv/pillar/base/qubes-server/admin-vpn.sls
+%config(noreplace) /srv/pillar/base/qubes-server/wan.top
+%config(noreplace) /srv/pillar/base/qubes-server/wan.sls
+%config(noreplace) /srv/pillar/base/qubes-server/dmz.top
+%config(noreplace) /srv/pillar/base/qubes-server/dmz.sls
+%config(noreplace) /srv/pillar/base/qubes-server/dmz-ns.sls
+%config(noreplace) /srv/pillar/base/qubes-server/lan.top
+%config(noreplace) /srv/pillar/base/qubes-server/lan.sls
+%config(noreplace) /srv/pillar/base/qubes-server/lan-dhcp-server.sls
+%config(noreplace) /srv/pillar/base/qubes-server/lan-ns.sls
+%config(noreplace) /etc/salt/minion.d/qubes-server.conf
+
+%changelog
+@CHANGELOG@

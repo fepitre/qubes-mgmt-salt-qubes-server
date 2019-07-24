@@ -1,0 +1,5 @@
+base:
+    dom0:
+        - qubes-server.network
+    sys-net-interfaces:
+        - qubes-server.sys-net-interfaces
