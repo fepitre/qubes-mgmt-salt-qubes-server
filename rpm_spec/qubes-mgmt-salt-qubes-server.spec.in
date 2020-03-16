@@ -10,6 +10,9 @@ URL:		https://www.qubes-os.org/
 Source:	%{name}-%{version}.tar.gz
 
 Requires:	qubes-mgmt-salt
+Requires:	qubes-saltstack-formulas-bind
+Requires:	qubes-saltstack-formulas-dhcpd
+Requires:	qubes-saltstack-formulas-openvpn
 
 %description
 
@@ -30,6 +33,8 @@ make install DESTDIR=%{buildroot} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{
 /srv/formulas/base/qubes-server/README.md
 /srv/formulas/base/qubes-server/LICENSE
 /srv/formulas/base/qubes-server/qubes-server
+/srv/formulas/base/qubes-server/qubes-server-install.sh
+/srv/formulas/base/qubes-server/qubes-server-manage.sh
 
 %attr(750, root, root) %dir /srv/pillar/base/qubes-server
 %config(noreplace) /srv/pillar/base/qubes-server/init.sls

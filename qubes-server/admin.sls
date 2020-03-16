@@ -1,10 +1,25 @@
+admin-sys-firewall:
+    qvm.vm:
+        - present:
+            - label: green
+        - prefs:
+            - template: {{ salt['pillar.get']('qubes-server:template', 'debian-10-minimal') }}
+            - netvm: {{ salt['pillar.get']('qubes-server:admin-sys-firewall:network:front:netvm', 'none') }}
+            - autostart: true
+            - provides-network: true
+            - memory: 400
+            - ip: {{ salt['pillar.get']('qubes-server:admin-sys-firewall:network:front:address', '') }}
+        - tags:
+            - add:
+                - created-by-admin-mgmt
+
 admin-sys-net:
     qvm.vm:
         - present:
             - label: red
         - prefs:
             - template: {{ salt['pillar.get']('qubes-server:template', 'debian-10-minimal') }}
-            - netvm: {{ salt['pillar.get']('qubes-server:admin-sys-net:network:front:netvm', 'none') }}
+            - netvm: admin-sys-firewall
 {% if salt['pillar.get']('qubes-server:admin-sys-net:pcidevs') %}
             - virt_mode: hvm
 {% endif %}
@@ -12,7 +27,7 @@ admin-sys-net:
             - provides-network: true
             - memory: 400
             - pcidevs: {{ salt['pillar.get']('qubes-server:admin-sys-net:pcidevs', []) }}
-            - ip: {{ salt['pillar.get']('qubes-server:admin-sys-net:network:back:address', '') }}
+            - ip: {{ salt['pillar.get']('qubes-server:admin-sys-net:network:front:address', '') }}
         - service:
             - disable:
                 - meminfo-writer
@@ -21,21 +36,6 @@ admin-sys-net:
                 - created-by-admin-mgmt
         - devices:
             - attach: {{ salt['pillar.get']('qubes-server:admin-sys-net:devices', []) }}
-
-admin-sys-firewall:
-    qvm.vm:
-        - present:
-            - label: green
-        - prefs:
-            - template: {{ salt['pillar.get']('qubes-server:template', 'debian-10-minimal') }}
-            - netvm: admin-sys-net
-            - autostart: true
-            - provides-network: true
-            - memory: 400
-            - ip: {{ salt['pillar.get']('qubes-server:admin-sys-firewall:network:front:address', '') }}
-        - tags:
-            - add:
-                - created-by-admin-mgmt
 
 admin-vpn:
     qvm.vm:

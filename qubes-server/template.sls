@@ -15,6 +15,7 @@ template-dependencies:
       - qubes-core-agent-networking
       - qubes-core-agent-dom0-updates
       - qubes-core-agent-bridge-device
+      - qubes-core-agent-bridge-device-networking
 
 /etc/systemd/system/sshd.service.d/30_qubes.conf:
   file.managed:

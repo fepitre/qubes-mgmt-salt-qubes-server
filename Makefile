@@ -27,6 +27,8 @@
 install-custom::
 	# Install /etc/salt/* and /srv/*
 	cp -Tr etc $(DESTDIR)/etc
+	install -m 755 scripts/qubes-server-install.sh $(DESTDIR)$(MGMT_FORMULA_DIR)/
+	install -m 755 scripts/qubes-server-manage.sh $(DESTDIR)$(MGMT_FORMULA_DIR)/
 
 get-sources:
 	git submodule update --init --recursive
