@@ -11,6 +11,8 @@ template-dependencies:
       - bind9
       - dns-root-data
       - openvpn
+      - nginx
+      - cerbot
       - qubes-core-admin-client
       - qubes-core-agent-networking
       - qubes-core-agent-dom0-updates
@@ -56,6 +58,14 @@ template-dependencies:
     - contents: |
         [Unit]
         ConditionPathExists=/var/run/qubes-service/openvpn
+
+/etc/systemd/system/nginx.service.d/30_qubes.conf:
+  file.managed:
+    - makedirs: True
+    - mode: 0600
+    - contents: |
+        [Unit]
+        ConditionPathExists=/var/run/qubes-service/nginx
 
 systemd_daemon_reload:
   cmd.run:
