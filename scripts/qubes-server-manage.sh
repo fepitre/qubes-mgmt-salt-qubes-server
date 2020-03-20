@@ -1,7 +1,7 @@
 #!/bin/bash
 
 wan="wan-sys-firewall wan-sys-net"
-admin="admin-mgmt admin-vpn admin-sys-net admin-sys-firewall"
+admin="admin-mgmt admin-vpn admin-ns admin-sys-net admin-sys-firewall"
 dmz="dmz-ns dmz-sys-net dmz-sys-firewall"
 lan="lan-ns lan-dhcp-server lan-sys-net lan-sys-firewall"
 all="$lan $dmz $admin $wan sys-net-interfaces"

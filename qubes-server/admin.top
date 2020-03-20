@@ -5,6 +5,8 @@ base:
         - qubes-server.admin-sys-net
     admin-sys-firewall:
         - qubes-server.admin-sys-firewall
+    admin-ns:
+        - bind.config
     admin-vpn:
         - qubes-server.admin-vpn
         - openvpn.config

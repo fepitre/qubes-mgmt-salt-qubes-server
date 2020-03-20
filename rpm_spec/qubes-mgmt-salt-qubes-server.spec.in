@@ -44,6 +44,8 @@ make install DESTDIR=%{buildroot} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{
 %config(noreplace) /srv/pillar/base/qubes-server/admin-vpn.sls
 %config(noreplace) /srv/pillar/base/qubes-server/wan.top
 %config(noreplace) /srv/pillar/base/qubes-server/wan.sls
+%config(noreplace) /srv/pillar/base/qubes-server/pub.top
+%config(noreplace) /srv/pillar/base/qubes-server/pub.sls
 %config(noreplace) /srv/pillar/base/qubes-server/dmz.top
 %config(noreplace) /srv/pillar/base/qubes-server/dmz.sls
 %config(noreplace) /srv/pillar/base/qubes-server/dmz-ns.sls

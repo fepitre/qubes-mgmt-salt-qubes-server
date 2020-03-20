@@ -1,9 +1,6 @@
 {% set ifname = salt['pillar.get']('qubes-server:admin-sys-net:network:back:ifname', '') %}
 {% set address = salt['pillar.get']('qubes-server:admin-sys-net:network:back:address', '') %}
 {% set netmask = salt['pillar.get']('qubes-server:admin-sys-net:network:back:netmask', '') %}
-{% set gateway = salt['pillar.get']('qubes-server:admin-sys-net:network:back:gateway', '') %}
-{% set dnsdomain = salt['pillar.get']('qubes-server:admin-sys-net:network:back:dnsdomain', '') %}
-{% set dnsnameservers = salt['pillar.get']('qubes-server:admin-sys-net:network:back:dnsnameservers', '') %}
 
 /rw/config/qubes-bind-dirs.d/interfaces.conf:
   file.managed:
@@ -11,7 +8,6 @@
     - mode: 0600
     - contents: |
         binds+=( '/etc/network/interfaces.d' )
-        binds+=( '/etc/resolv.conf' )
 
 bind-dirs-interfaces:
   cmd.run:
@@ -28,14 +24,6 @@ bind-dirs-interfaces:
             iface {{ ifname }} inet static
               address {{ address }}
               netmask {{ netmask }}
-              gateway {{ gateway }}
-
-/rw/bind-dirs/etc/resolv.conf:
-    file.managed:
-        - mode: 0600
-        - contents: |
-              search {{ dnsdomain }}
-              nameserver {{ dnsnameservers }}
 
 /rw/config/rc.local:
     file.append:

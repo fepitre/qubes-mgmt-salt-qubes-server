@@ -31,13 +31,12 @@ bind-dirs-interfaces:
             - mode: 755
         - text: |
             sysctl -w net.ipv4.ip_forward=1
+
             iptables -I INPUT 1 -i {{ ifname }} -j ACCEPT
             iptables -I FORWARD 1 -i {{ ifname }} -j ACCEPT
             iptables -t nat -A POSTROUTING -o eth0 -p all -j MASQUERADE
 
             iptables -I INPUT 2 -s {{ salt['pillar.get']('qubes-server:lan-dhcp-server:network:front:address', '') }} -p udp --dport 67:68 --sport 67:68 -j ACCEPT
-            #iptables -I INPUT 2 -s {{ salt['pillar.get']('qubes-server:lan-ns:network:front:address', '') }} -p udp --dport 53 -j ACCEPT
-
             ip route add {{ salt['pillar.get']('qubes-server:lan-dhcp-server:network:front:address', '') }} via {{ salt['pillar.get']('qubes-server:lan-sys-net:network:front:address', '') }}
 
             systemctl restart isc-dhcp-relay

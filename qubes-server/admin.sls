@@ -12,6 +12,10 @@ admin-sys-firewall:
         - tags:
             - add:
                 - created-by-admin-mgmt
+{% if salt['pillar.get']('qubes-server:admin-sys-firewall:devices', []) %}
+        - devices:
+            - attach: {{ salt['pillar.get']('qubes-server:admin-sys-firewall:devices', []) }}
+{% endif %}
 
 admin-sys-net:
     qvm.vm:
@@ -34,8 +38,10 @@ admin-sys-net:
         - tags:
             - add:
                 - created-by-admin-mgmt
+{% if salt['pillar.get']('qubes-server:admin-sys-net:devices', []) %}
         - devices:
             - attach: {{ salt['pillar.get']('qubes-server:admin-sys-net:devices', []) }}
+{% endif %}
 
 admin-vpn:
     qvm.vm:
@@ -68,6 +74,26 @@ admin-mgmt:
         - service:
             - enable:
                 - sshd
+        - tags:
+            - add:
+                - created-by-admin-mgmt
+
+admin-ns:
+    qvm.vm:
+        - present:
+            - label: green
+        - prefs:
+            - template: {{ salt['pillar.get']('qubes-server:template', 'debian-10-minimal') }}
+            - netvm: admin-sys-firewall
+            - autostart: true
+            - provides-network: no
+            - memory: 400
+            - ip: {{ salt['pillar.get']('qubes-server:admin-ns:network:front:address', '') }}
+        - service:
+            - enable:
+                - bind9
+            - disable:
+                - qubes-update-check.timer
         - tags:
             - add:
                 - created-by-admin-mgmt

@@ -68,7 +68,7 @@ fi
 
 if [ "$admin" == "1" ]; then
     qubesctl top.enable qubes-server.admin
-    qubesctl --target=admin-sys-net,admin-sys-firewall,admin-vpn,admin-mgmt state.highstate
+    qubesctl --target=admin-sys-net,admin-sys-firewall,admin-ns,admin-vpn,admin-mgmt state.highstate
     qubesctl top.disable qubes-server.admin
 fi
 

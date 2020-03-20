@@ -12,6 +12,10 @@ dmz-sys-firewall:
         - tags:
             - add:
                 - created-by-admin-mgmt
+{% if salt['pillar.get']('qubes-server:dmz-sys-firewall:devices', []) %}
+        - devices:
+            - attach: {{ salt['pillar.get']('qubes-server:dmz-sys-firewall:devices', []) }}
+{% endif %}
 
 dmz-sys-net:
     qvm.vm:

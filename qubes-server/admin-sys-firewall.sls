@@ -3,6 +3,12 @@
         - context:
             - mode: 755
         - text: |
-            iptables -t nat -A PREROUTING -i eth0 -p udp -d {{ salt['pillar.get']('qubes-server:admin-sys-firewall:network:front:address', '') }} --dport 1194 -j DNAT --to-destination {{ salt['pillar.get']('qubes-server:admin-vpn:network:front:address', '') }}
-            iptables -I FORWARD 2 -i eth0 -p udp -d {{ salt['pillar.get']('qubes-server:admin-vpn:network:front:address', '') }} --dport 1194 -m conntrack --ctstate NEW -j ACCEPT
-            nft add rule ip qubes-firewall forward meta iifname eth0 accept
+            echo "nameserver {{ salt['pillar.get']('qubes-server:admin-ns:network:front:address', '') }}" > /etc/resolv.conf
+            /usr/lib/qubes/qubes-setup-dnat-to-ns
+
+/rw/config/network-hooks.d/hook-admin.sh:
+    file.managed:
+        - makedirs: True
+        - mode: 755
+        - source: salt://qubes-server/hook-admin.sh
+        - template: jinja

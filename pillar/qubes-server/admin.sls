@@ -15,16 +15,20 @@ qubes-server:
         - ifname: ens6
         - address: 10.3.0.1
         - netmask: 255.255.255.0
-  admin-vpn:
+  admin-ns:
     - network:
       - front:
         - address: 10.137.5.3
+  admin-vpn:
+    - network:
+      - front:
+        - address: 10.137.5.4
       - vpn:
         - subnet: 10.8.0.0
         - netmask: 255.255.255.0
   admin-mgmt:
     - network:
       - front:
-        - address: 10.137.5.4
+        - address: 10.137.5.5
     - ssh:
       - admin_authorized_key: 'ssh-rsa XXXX'

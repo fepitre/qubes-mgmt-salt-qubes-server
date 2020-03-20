@@ -12,7 +12,7 @@ template-dependencies:
       - dns-root-data
       - openvpn
       - nginx
-      - cerbot
+      - certbot
       - qubes-core-admin-client
       - qubes-core-agent-networking
       - qubes-core-agent-dom0-updates

@@ -1,5 +1,7 @@
 base:
   '*':
     - qubes-server.admin
+  admin-ns:
+    - qubes-server.admin-ns
   admin-vpn:
     - qubes-server.admin-vpn
